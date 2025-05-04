@@ -1,5 +1,4 @@
 # Speculative Decoding
-Speculative Sampling
 
 Here our goal is to speed up generative model inference time. This has a few use cases such as fast edit suggestions for coding.
 
