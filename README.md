@@ -7,7 +7,7 @@ We use a small decoder (e.g. `opt-125m`) as the Draft model and a larger decoder
 
 Next, we feed those `k tokens` along with the original prompt to the main model to get their likelihoods at once from the attention mask layer. Then we use the probabilities for speculative tokens from the draft model and main model to accept or reject the suggested tokens.
 
-See this [video](https://www.youtube.com/watch?v=S-8yr_RibJ4)) for more details.
+See this [video](https://www.youtube.com/watch?v=S-8yr_RibJ4) for more details.
 
 The key insight is that there are many trivial tokens like "of" that a smaller model can easily predict. Therefore, we can use the smaller model to complete the prompt faster and then use the large model for verification. See below for some more references:
 
