@@ -1,20 +1,18 @@
 # Speculative Decoding
 Speculative Sampling
 
-Here our goal is to speed up generative model inference time. This has many use cases for edit suggestion for writing or coding.
+Here our goal is to speed up generative model inference time. This has a few use cases such as fast edit suggestions for coding.
 
-We will use a draft/basic decoder like GPT-2 and a bigger size model as the core model. We will prompt the draft model and generate k speculative tokens along with their probabilities.
+We use a small decoder (e.g. `opt-125m`) as the Draft model and a larger decoder (e.g. `opt-350m`) as the main model. We prompt the draft model to generate `k speculative tokens` along with their probabilities.
 
-Next we feed those k tokens along with the original prompt to the main model to get their liklihhods at once from the attention mask layer. Then we use the probabilities for speculative tokens from the draft model and main model to accept or reject speculated tokens.
+Next, we feed those `k tokens` along with the original prompt to the main model to get their likelihoods at once from the attention mask layer. Then we use the probabilities for speculative tokens from the draft model and main model to accept or reject the suggested tokens.
 
-See this video for more explanations:
+See this [video]([https://www.example.com](https://www.youtube.com/watch?v=S-8yr_RibJ4)) for more details.
 
-https://www.youtube.com/watch?v=S-8yr_RibJ4
+The key insight is that there are many trivial tokens like "of" that a smaller model can easily predict. Therefore, we can use the smaller model to complete the prompt faster and then use the large model for verification. See below for some more references:
 
-The key insight is that there are many simple tokens like "of" that even smaller model can easily predict them so we can use the smaller model to generate them faster and then use the bigger size model for facts and harder tokens!
+[1](https://pytorch.org/blog/hitchhikers-guide-speculative-decoding/)
 
-https://pytorch.org/blog/hitchhikers-guide-speculative-decoding/
+[2](https://www.youtube.com/watch?v=9wNAgpX6z_4)
 
-https://www.youtube.com/watch?v=9wNAgpX6z_4
-
-https://docs.google.com/presentation/d/1p1xE-EbSAnXpTSiSI0gmy_wdwxN5XaULO3AnCWWoRe4/edit#slide=id.p
+[3](https://docs.google.com/presentation/d/1p1xE-EbSAnXpTSiSI0gmy_wdwxN5XaULO3AnCWWoRe4/edit#slide=id.p)
