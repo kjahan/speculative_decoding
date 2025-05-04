@@ -11,8 +11,8 @@ See this [video]([https://www.example.com](https://www.youtube.com/watch?v=S-8yr
 
 The key insight is that there are many trivial tokens like "of" that a smaller model can easily predict. Therefore, we can use the smaller model to complete the prompt faster and then use the large model for verification. See below for some more references:
 
-[1](https://pytorch.org/blog/hitchhikers-guide-speculative-decoding/)
+[A Hitchhiker’s Guide to Speculative Decoding](https://pytorch.org/blog/hitchhikers-guide-speculative-decoding/)
 
-[2](https://www.youtube.com/watch?v=9wNAgpX6z_4)
+[Lecture 22: Hacker's Guide to Speculative Decoding in VLLM](https://www.youtube.com/watch?v=9wNAgpX6z_4)
 
-[3](https://docs.google.com/presentation/d/1p1xE-EbSAnXpTSiSI0gmy_wdwxN5XaULO3AnCWWoRe4/edit#slide=id.p)
+[A Hacker’s Guide to Speculative Decoding in vLLM](https://docs.google.com/presentation/d/1p1xE-EbSAnXpTSiSI0gmy_wdwxN5XaULO3AnCWWoRe4/edit#slide=id.p)
