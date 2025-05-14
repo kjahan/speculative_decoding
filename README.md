@@ -33,20 +33,11 @@ The implementation follows the speculative decoding algorithm where:
    - Or randomly with probability p(x)/q(x) if target probability < draft probability
 4. If a token is rejected, we sample from the adjusted distribution max(0, p(x)-q(x))
 
-## Models Used
+The key insight is that there are many simple tokens like "of" that a small LLM can predict. Therefore, we can use the small model to complete the prompt faster and use the large model for verification. See below for some some references:
 
-- Draft Model: facebook/opt-125m
-- Target Model: facebook/opt-350m
+[Fast Inference from Transformers via Speculative Decoding](https://arxiv.org/pdf/2211.17192)
 
-Here our goal is to speed up generative model inference time. This has a few use cases such as fast edit suggestions for coding.
-
-We use a small decoder (e.g. `opt-125m`) as the Draft model and a larger decoder (e.g. `opt-350m`) as the main model. We prompt the draft model to generate `k speculative tokens` along with their probabilities.
-
-Next, we feed those `k tokens` along with the original prompt to the main model to get their likelihoods at once from the attention mask layer. Then we use the probabilities for speculative tokens from the draft model and main model to accept or reject the suggested tokens.
-
-See this [video](https://www.youtube.com/watch?v=S-8yr_RibJ4) for more details.
-
-The key insight is that there are many trivial tokens like "of" that a smaller model can easily predict. Therefore, we can use the smaller model to complete the prompt faster and then use the large model for verification. See below for some more references:
+[Speculative Decoding: When Two LLMs are Faster than One](https://www.youtube.com/watch?v=S-8yr_RibJ4)
 
 [A Hitchhiker's Guide to Speculative Decoding](https://pytorch.org/blog/hitchhikers-guide-speculative-decoding/)
 
